@@ -1,0 +1,98 @@
+@(Datail : Products)
+@if(session.get("status")=="user"){
+    <div class="row" >
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+
+            <table class="table table-hover ">
+                <tr>
+                    <td colspan="2" align="center"><img src="/assets/images/cscam/@Datail.getPic" width="300px" height="300px" class="thumbnail"><td>
+                </tr>
+                <tr>
+                    <th>รหัสสินค้า</th>
+                    <td>@Datail.getId<td>
+                </tr>
+                <tr>
+                    <th>ชื่อสินค้า</th>
+                    <td>@Datail.getName<td>
+                </tr>
+                <tr>
+                    <th>ประเภทสินค้า</th>
+                    <td>@Datail.getTypes.getName<td>
+                </tr>
+                <tr>
+                    <th>ยี่ห้อ</th>
+                    <td>@Datail.getBrands.getName<td>
+                </tr>
+                <tr>
+                    <th>ราคา</th>
+                    <td>@Datail.getPrice<td>
+                </tr>
+                <tr>
+                    <th>จำนวน</th>
+                    <td>@Datail.getAmount<td>
+                </tr>
+
+                <tr>
+                    <th>รายละเอียด</th>
+                    <td>@Datail.getDetail  <td>
+                </tr>
+            </table>
+
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <center>
+        <a href="/addOrder/@Datail.getId" class="btn btn-danger">Buy</a>
+    </center>
+    <br><br>
+}else{
+    <div class="row" >
+        <div class="col-md-1"></div>
+        <div class="col-md-10">
+
+            <table class="table table-hover ">
+                <tr>
+                    <td colspan="2" align="center"><img src="/assets/images/cscam/@Datail.getPic" width="300px" height="300px" class="thumbnail"><td>
+                </tr>
+                <tr>
+                    <th>รหัสสินค้า</th>
+                    <td>@Datail.getId<td>
+                </tr>
+                <tr>
+                    <th>ชื่อสินค้า</th>
+                    <td>@Datail.getName<td>
+                </tr>
+                <tr>
+                    <th>ประเภทสินค้า</th>
+                    <td>@Datail.getTypes.getName<td>
+                </tr>
+                <tr>
+                    <th>ยี่ห้อ</th>
+                    <td>@Datail.getBrands.getName<td>
+                </tr>
+                <tr>
+                    <th>ราคา</th>
+                    <td>@Datail.getPrice<td>
+                </tr>
+                <tr>
+                    <th>จำนวน</th>
+                    <td>@Datail.getAmount<td>
+                </tr>
+
+                <tr>
+                    <th>รายละเอียด</th>
+                    <td>@Datail.getDetail  <td>
+                </tr>
+            </table>
+
+
+        </div>
+        <div class="col-md-1"></div>
+    </div>
+    <center>
+        <a href="/LoginFormForBuy" class="btn btn-danger">Buy</a>
+    </center>
+    <br><br>
+}

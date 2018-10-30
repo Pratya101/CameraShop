@@ -1,0 +1,40 @@
+@(Datail : Accessory)
+<div class="row" >
+    <div class="col-md-1"></div>
+    <div class="col-md-10">
+
+        <table class="table ">
+            <tr>
+                <td colspan="2" align="center"><img src="/assets/images/csacc/@Datail.getPic" width="300px" height="300px" class="thumbnail"><td>
+            </tr>
+            <tr>
+                <th>รหัสอุปกรณ์</th>
+                <td>@Datail.getId<td>
+            </tr>
+            <tr>
+                <th>ชื่ออุปกรณ์</th>
+                <td>@Datail.getName<td>
+            </tr>
+            <tr>
+                <th>ประเถทอุปกรณ์</th>
+                <td>@Datail.getTypeAcc.getName<td>
+            </tr>
+            <tr>
+                <th>ราคา</th>
+                <td>@Datail.getPrice<td>
+            </tr>
+            <tr>
+                <th>จำนวน</th>
+                <td>@Datail.getAmount<td>
+            </tr>
+
+            <tr>
+                <th>รายละเอียด</th>
+                <td>@Datail.getDetail  <td>
+            </tr>
+        </table>
+
+
+    </div>
+    <div class="col-md-1"></div>
+</div>

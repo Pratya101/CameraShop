@@ -1,0 +1,36 @@
+@(prooo : List[Products])
+@if(session.get("status")=="user"){
+    <div class="row">
+    @for(pros <- prooo){
+        <div class="col-md-3" style="padding: 1px;">
+            <div class="card" style="width: 13rem;">
+                <img class="card-img-top" src="/assets/images/cscam/@pros.getPic" alt="Card image cap">
+                <div class="card-body">
+                    <b><h7 class="card-title">ยี่ห้อ : @pros.getBrands.getName</h7></b>
+                    <p class="card-text">รุ่น : @pros.getGeneration <br>ประเภท : @pros.getTypes.getName <br>ราคา : @pros.getPrice</p>
+                    <a href="/addOrder/@pros.getId" class="btn btn-danger">Buy</a>
+                    <a href="/detailProductuser/@pros.getId" class="btn btn-success">Detail</a>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+}else{
+    <div class="row">
+    @for(pros <- prooo){
+        <div class="col-md-3" style="padding: 1px;">
+            <div class="card" style="width: 13rem;">
+                <img class="card-img-top" src="/assets/images/cscam/@pros.getPic" alt="Card image cap">
+                <div class="card-body">
+                    <b><h7 class="card-title">ยีห้อ : @pros.getBrands.getName</h7></b>
+                    <p class="card-text">รุ่น :@pros.getGeneration <br>ประเภท : @pros.getTypes.getName <br>ราคา : @pros.getPrice</p>
+                    <a href="/LoginFormForBuy" class="btn btn-danger">Buy</a>
+                    <a href="/detailProductuser/@pros.getId" class="btn btn-success">Detail</a>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+}
+
+

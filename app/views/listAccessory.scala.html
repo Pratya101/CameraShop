@@ -1,0 +1,31 @@
+@(data : List[Accessory])
+<center>
+    <h3>รายการอุปกรณ์ทั้งหมด</h3>
+    <table class="table table-hover ">
+        <tr class="active">
+            <td>ID</td>
+            <td>Name</td>
+            <td>Types</td>
+            <td>Price</td>
+            <td>Amount</td>
+            <td>Detail</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        @for(pro <- data) {
+            <tr>
+                <td>@pro.getId</td>
+                <td>@pro.getName</td>
+                <td>@pro.getTypeAcc.getName</td>
+                <td>@pro.getPrice</td>
+                <td>@pro.getAmount</td>
+                <td align="center"><a href="/detailAccessory/@pro.getId"><i class="material-icons">description</i></a></td>
+                <td align="center"><a href="/editAccessory/@pro.getId"><i class="material-icons">edit</i></a></td>
+                <td align="center"><a href="/deleteAccessory/@pro.getId" onclick="return confirm('คุณต้องการที่จะลบสินค้าตัวนี้ใช่ไหรือไม่')"><i class="material-icons">delete</i></a></td>
+            </tr>
+        }
+    </table>
+    <a href="/addAccessory"> <button type="button" class="btn btn-primary">เพิ่มอุปกรณ์</button></a>
+
+
+</center>

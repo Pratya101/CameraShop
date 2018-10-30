@@ -1,0 +1,24 @@
+@(data : List[Brands])
+<center>
+    <h3>รายการยี่ห้อสินค้าทั้งหมด</h3>
+    <table class="table table-hover ">
+        <tr class="active" align="center">
+            <td>ID</td>
+            <td>Name</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        @for(pro <- data) {
+            <tr>
+                <td align="center">@pro.getId</td>
+                <td align="center">@pro.getName</td>
+                <td align="center"><a href="/editBrands/@pro.getId"><i class="material-icons">edit</i></a></td>
+                <td align="center"><a href="/deleteBrands/@pro.getId" onclick="return confirm('คุณต้องการที่จะลบสินค้าตัวนี้ใช่ไหรือไม่')"><i class="material-icons">delete</i></a></td>
+
+            </tr>
+        }
+    </table>
+    <a href="/addBrands"> <button type="button" class="btn btn-primary">เพิ่มสินค้า</button></a>
+
+
+</center>

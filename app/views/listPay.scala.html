@@ -1,0 +1,30 @@
+@(nopay : List[Orders])
+<center>
+    <h2>รายการสินค้าทั้งหมด</h2>
+</center>
+<table class="table table-hover">
+    <th>เลขที่ใบเสร็จ</th>
+    <th>สถานะ</th>
+    <th>เเจ้งชำระเงิน</th>
+
+    @for(pay <- nopay){
+        <tr>
+            <td>@pay.getId</td>
+            <td>@if(pay.getStatus==""){
+                <h6 style="color:red;">ยังไม่ได้ชำระเงิน</h6>
+            }else{
+                <h6 style="color:green;">ชำระเงินเเล้ว</h6>
+            }
+            </td>
+            <td>@if(pay.getStatus==""){
+                <h6><a href="/payment/@pay.getId">เเจ้งชำระเงิน</a></h6>
+            }else{
+                <h6 style="color:green;"></h6>
+            }</td>
+        </tr>
+    }
+</table>
+
+    <center>
+        <a href="/checkBill" class="btn btn-danger">ยกเลิก</a>
+    </center>

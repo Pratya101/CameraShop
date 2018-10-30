@@ -1,0 +1,39 @@
+@(dataAcc: List[Accessory])
+@if(session.get("status") == "user") {
+    <div class="row">
+    @for(pros <- dataAcc) {
+        <div class="col-md-3" style="padding: 1px;">
+            <div class="card" style="width: 13rem;">
+                <img class="card-img-top" src="/assets/images/csacc/@pros.getPic" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">@pros.getName</h5>
+                    <p class="card-text">@pros.getTypeAcc.getName <br> @pros.getPrice</p>
+                    <a href="/listsell/@pros.getId" class="btn btn-danger">Buy</a>
+                    <a href="/detailProductuser/@pros.getId" class="btn btn-success">Detail</a>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+} else {
+    @if(flash.containsKey("msgError")) {
+        <div class="alert alert-danger"><strong>ผิดพลาด</strong>@flash.get("msgError"). </div>
+    }
+    <div class="row">
+    @for(pros <- dataAcc) {
+        <div class="col-md-3" style="padding: 1px;">
+            <div class="card" style="width: 13rem;">
+                <img class="card-img-top" src="/assets/images/csacc/@pros.getPic" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">ยีห้อ : @pros.getName</h5>
+                    <p class="card-text">รุ่น :@pros.getTypeAcc.getName <br> @pros.getPrice</p>
+                    <a href="/loginForm" class="btn btn-danger">Buy</a>
+                    <a href="/detailProductuser/@pros.getId" class="btn btn-success">Detail</a>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+}
+
+

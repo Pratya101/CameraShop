@@ -1,0 +1,22 @@
+@(users: Form[Users])
+@import helper._;
+<center>
+    <h2>แก้ไขที่อยู่ในการจัดส่ง</h2>
+</center>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+        @if(flash.containsKey("msgError")) {
+            <div class="alert alert-danger"><strong>ผิดพลาด</strong>@flash.get("msgError"). </div>
+        }
+        @helper.form(action = routes.Application.updateSender(), 'enctype -> "multipart/form-data") {
+            @inputText(users("name"), '_label -> "ชื่อ : ", 'size -> "100px", 'required -> "required", 'class -> "form-control")
+            @inputText(users("sername"), '_label -> "นามสกุล : "   , 'size -> "100px", 'required -> "required", 'class -> "form-control")
+            @textarea(users("Address"), '_label -> "ที่อยู่ : ", 'cols -> "60", 'rows -> "5", 'required -> "required", 'class -> "form-control")
+            @inputText(users("tel"), '_label -> "เบอร์โทร์ : ",'size -> "100px", 'required -> "required", 'class -> "form-control")
+            <input type="submit" value="บันทึก" class="btn btn-success">
+            <input type="reset" value="เคลียร์" class="btn btn-danger">
+            }
+    </div>
+    <div class="col-md-3"></div>
+</div>

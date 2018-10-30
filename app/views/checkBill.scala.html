@@ -1,0 +1,56 @@
+@(basketList: List[Basket],users: Users)
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <h2>ยืนยันการสั่งซื้อ</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover">
+        <th width="10%">รหัส</th>
+        <th width="50%">ชื่อกล้อง</th>
+        <th width="10%">ราคา</th>
+        <th width="10%">จำนวน</th>
+        <th width="20%">เป็นเงิน</th>
+
+    @for(basket <- basketList){
+        <tr>
+            <td>@basket.getProducts.getId</td>
+            <td>@basket.getProducts.getBrands.getName</td>
+            <td>@basket.getProducts.getPrice</td>
+            <td>@basket.getAmount</td>
+            <td>@(basket.getProducts.getPrice * basket.getAmount)</td>
+
+        </tr>
+    }
+        </table>
+        <br>
+        <a href="/saveBill" class="btn btn-success"><i class="material-icons" style="font-size: 15px;">check_circle</i> ยืนยันการสั่งซื้อ</a>
+        <a href="/" class="btn btn-primary"><i class="material-icons" style="font-size: 15px;">add_circle</i> เลือกสินค้าเพิ่ม</a>
+    </div>
+</div>
+<br><br>
+
+    <h2>ที่อยู่ในการจัดส่ง</h2>
+
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table table-hover">
+            <tr>
+                <th>ชื่อ - นามสกุล</th>
+                <td>@users.getName @users.getSername</td>
+            </tr>
+            <tr>
+                <th>ที่อยู่</th>
+                <td>@users.getAddress</td>
+            </tr>
+            <tr>
+                <th>เบอร์โทร</th>
+                <td>@users.getTel</td>
+            </tr>
+        </table>
+    </div>
+</div>
+<a href="/editSender" class="btn btn-warning"><i class="material-icons" style="font-size: 15px;">edit</i> แก้ไขที่อยู่</a><br><br>

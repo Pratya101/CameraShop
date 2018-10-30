@@ -1,0 +1,35 @@
+@(payList : List[Orders])
+<center>
+<h2>
+    รายการสั่งซื้อที่มีการเเจ้งชำระเงินเล้ว
+</h2>
+</center>
+<table class="table table-hover">
+    <th>เลขที่ใบเสร็จ</th>
+    <th>รายการ</th>
+    <th>Pic</th>
+    <th>รายชื่อชื่อผู้สั่งสินค้า</th>
+
+    @for(pay <- payList){
+        <tr>
+            <td>@pay.getId</td>
+            <td>
+                <table>
+                @for(listproduct <- pay.getOrdersDetailList){
+                    <tr>
+                        <td>@listproduct.getProducts.getName </td>
+                        <td>@listproduct.getProducts.getGeneration</td>
+                        <td>ราคา : @(listproduct.getAmount * listproduct.getProducts.getPrice) บาท</td>
+                    </tr>
+                }
+                </table>
+            </td>
+            <td>
+                <a href="/assets/images/bill/@pay.getStatus" target="_blank">    <img src="/assets/images/bill/@pay.getStatus" width="100px" height="100px" class="img-thumbnail"></a>
+            </td>
+
+            <td>@pay.getUsers.getName @pay.getUsers.getSername</td>
+        </tr>
+
+    }
+</table>

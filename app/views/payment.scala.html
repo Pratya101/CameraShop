@@ -1,0 +1,60 @@
+@(sale : Orders,addbill : Form[Orders])
+@if(flash.containsKey("billok")){
+    <center><div class="alert alert-success"><strong>สำเร็จ</strong>@flash.get("billok"). </div></center>
+}
+<center>
+    <h2>ใบเสร็จ & เเจ้งชำระเงิน</h2>
+</center>
+
+<table class="table table-hover">
+    <tr>
+    <th>เลขที่ใบเสร็จ</th>
+    <td>@sale.getId</td>
+    </tr>
+    <tr>
+    <th>ราการสินค้า</th>
+
+    <td>
+
+        <table>
+        @for(listproduct <-sale.getOrdersDetailList ){
+            <tr>
+                <td>@listproduct.getProducts.getName </td>
+                <td>@listproduct.getProducts.getGeneration</td>
+                <td>จำนวน : @listproduct.getAmount ตัว</td>
+                <td>ราคา : @(listproduct.getAmount * listproduct.getProducts.getPrice) บาท</td>
+            </tr>
+        }
+        </table>
+        <br>
+
+    </td>
+    </tr>
+    <tr>
+        <th>ชื่ผู้สั่ง</th>
+        <td>@sale.getUsers.getName &nbsp;&nbsp;@sale.getUsers.getSername </td>
+    </tr>
+    <tr>
+        <th>ที่อยู่ในการจัดสั่ง</th>
+        <td>@sale.getUsers.getAddress</td>
+    </tr>
+
+</table>
+
+
+@import helper._;
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-6">
+        @if(flash.containsKey("msgError")) {
+            <div class="alert alert-danger"><strong>ผิดพลาด</strong>@flash.get("msgError"). </div>
+        }
+        @helper.form(action = routes.Application.insertpayment(), 'enctype -> "multipart/form-data") {
+            @inputFile(addbill("status"), '_label -> "รูปภาพหลักฐานการชำระเงิน", 'required -> "required")
+            <input type="submit" value="ยืนยัน" class="btn btn-success">
+            <a href="/statusProduct" class="btn btn-danger">ยกเลิก</a>
+            }
+    </div>
+    <div class="col-md-2"></div>
+</div>
+

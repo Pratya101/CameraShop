@@ -1,0 +1,47 @@
+@(basketList: List[Basket])
+@if(flash.containsKey("saveBill")){
+    <center><div class="alert alert-success"><strong>สำเร็จ</strong>@flash.get("saveBill"). </div></center>
+}
+<br>
+<div class="row">
+    <div class="col-md-12">
+        <h2  align="center">ตระกร้าสินค้า</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <table class="table table-hover">
+                <th>รหัสสินค้า</th>
+                <th>ชื่อ</th>
+                <th>รุ่น</th>
+                <th>ราคา</th>
+                <th>จำนวน</th>
+                <th>ลบ</th>
+            @if(basketList != null){
+                @for(basket <- basketList){
+
+                    <tr>
+                        <td>@basket.getProducts.getId</td>
+                        <td>@basket.getProducts.getBrands.getName </td>
+                        <td>@basket.getProducts.getGeneration </td>
+                        <td>@basket.getProducts.getPrice</td>
+                        <td>@basket.getAmount</td>
+                        <td> <a href="/removeItem/@basket.getProducts.getId" onclick="return confirm('คุณต้องการที่จะลบสินค้านี่ออกจากตระกร้าใช่หรือไม่')"><i class="material-icons">delete</i></a><br></td>
+                    </tr>
+
+
+                }
+            }else{
+                <center> <div class="alert alert-danger"><strong>ไม่มีสินค้า</strong>ไม่มีสินค้าในตระกร้า</div></center>
+
+            }
+            </table>
+            <center>
+            <a href="/checkBill" class="btn btn-success"><i class="material-icons" style="font-size: 15px;">check_circle</i> ยืนยันการสั่งซื้อ</a>
+            <a href="/" class="btn btn-info"><i class="material-icons" style="font-size: 15px;">add_circle</i> เลือกสินค้าเพิ่ม</a>
+            </center>
+        </div>
+        <br><br><br>
+    </div>
+</div>

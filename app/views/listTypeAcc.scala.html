@@ -1,0 +1,24 @@
+@(typesacc : List[TypeAcc])
+<center>
+    <h3>รายการประเภทอุปกรณ์ทั้งหมด</h3>
+    <table class="table table-hover ">
+        <tr class="active" align="center">
+            <td>ID</td>
+            <td>Name</td>
+            <td>Edit</td>
+            <td>Delete</td>
+        </tr>
+        @for(pro <- typesacc) {
+            <tr>
+                <td align="center">@pro.getId</td>
+                <td align="center">@pro.getName</td>
+                <td align="center"><a href="/editTypeAcc/@pro.getId"><i class="material-icons">edit</i></a></td>
+                <td align="center"><a href="/deleteTypeAcc/@pro.getId" onclick="return confirm('คุณต้องการที่จะลบสินค้าตัวนี้ใช่ไหรือไม่')"><i class="material-icons">delete</i></a></td>
+
+            </tr>
+        }
+    </table>
+    <a href="/addTypeAcc"> <button type="button" class="btn btn-primary">เพิ่มประเภทอุปกรณ์</button></a>
+
+
+</center>

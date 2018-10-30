@@ -1,0 +1,34 @@
+@if(flash.containsKey("msgError")) {
+    <div class="alert alert-danger"><strong>ผิดพลาด</strong>@flash.get("msgError"). </div>
+}
+<center>
+    <h3>สมัครสมชิก</h3>
+</center>
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+        <form role="form" action="/updateSender" method="post">
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <input type="text" name="name" class="form-control input-sm" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <div class="form-group">
+                        <input type="text" name="sername"  class="form-control input-sm" placeholder="Last Name">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <textarea cols="50" rows="3" name="address" class="form-control input-sm" placeholder="Your Address"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="text" name="tel" id="email" class="form-control input-sm" placeholder="Tel.">
+            </div>
+            <input type="submit" value="Register" class="btn btn-dark btn-block">
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>

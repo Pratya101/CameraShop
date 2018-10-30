@@ -1,0 +1,76 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET         /                              controllers.Application.index()
+GET         /loginForm                     controllers.Application.loginForm()
+GET         /LoginFormForBuy               controllers.Application.loginFormforBuy()
+POST        /submitLogin                   controllers.Application.submitLogin()
+GET         /logout                        controllers.Application.logOut()
+GET         /register                      controllers.Application.register()
+POST        /PostRegister                  controllers.Application.postRegister()
+GET         /mainADmin                     controllers.Application.indexAdmin()
+#Users
+GET         /editSender                    controllers.Application.editSender()
+POST        /updateSender                  controllers.Application.updateSender()
+#Products
+GET         /listproducts                  controllers.Application.listProducts()
+GET         /addProduct                    controllers.Application.fromAddProducts()
+POST        /insertProduct                 controllers.Application.insertProduct()
+GET         /editProducts/:id              controllers.Application.editProducts(id : String)
+POST        /updateProducts                controllers.Application.updateProduct()
+GET         /deleteProduct/:id             controllers.Application.deleteProducts(id : String)
+GET         /detailProductadmin/:id        controllers.Application.detailProduct(id : String)
+GET         /detailProductuser/:id         controllers.Application.detailProductuser(id : String)
+#Types
+GET         /listTypes                     controllers.Application.listTypes()
+GET         /addTypes                      controllers.Application.formAddTypes()
+POST        /insertTypes                   controllers.Application.insertTypes()
+GET         /editTypes/:id                 controllers.Application.editTypes(id : String)
+POST        /updateTypes                   controllers.Application.updateType()
+GET         /deleteTypes/:id               controllers.Application.deleteTypes(id : String)
+#Brands
+GET         /listBrands                    controllers.Application.listBrands()
+GET         /addBrands                     controllers.Application.formAddBrands()
+POST        /insertBrandss                 controllers.Application.insertBrands()
+GET         /editBrands/:id                controllers.Application.editBrands(id : String)
+POST        /updateBrands                  controllers.Application.updateBrands()
+GET         /deleteBrands/:id              controllers.Application.deleteBrands(id : String)
+#Select Brands
+GET         /Brand/:id                     controllers.Application.brandPage(id : String)
+#TypeAcc
+GET         /listTypeAcc                   controllers.Application.listTypeAcc()
+GET         /addTypeAcc                    controllers.Application.formAddTypeAcc()
+POST        /insetTypeAcc                  controllers.Application.insertTypeAcc()
+GET         /editTypeAcc/:id               controllers.Application.editTypeAcc(id : String)
+POST        /updateTypeAcc                 controllers.Application.updateTypeAcc()
+GET         /deleteTypeAcc/:id             controllers.Application.deleteTypeAcc(id : String)
+#Accrssory
+GET         /listAccessory                 controllers.Application.listAccessory()
+GET         /addAccessory                  controllers.Application.addAccessory()
+POST        /insertAccessory               controllers.Application.insertAccessory()
+GET         /editAccessory/:id             controllers.Application.editAccessory(id : String)
+POST        /updateAccessory               controllers.Application.updateAccessory()
+GET         /deleteAccessory/:id           controllers.Application.deleteAccessory(id : String)
+GET         /detailAccessory/:id           controllers.Application.detailAccessory(id : String)
+#Members
+GET         /listMembers                   controllers.Application.listuser()
+#Select TypeAccessory
+GET         /typeaccessrory/:id            controllers.Application.typeAccPage(id : String)
+#Basket
+GET         /basketSell                    controllers.Application.basketSell()
+GET         /addOrder/:id                  controllers.Application.addOrder(id:String)
+GET         /removeItem/:id                controllers.Application.removeItem(id : String)
+GET         /checkBill                     controllers.Application.checkBill()
+GET         /saveBill                      controllers.Application.saveBill()
+
+#payment
+GET         /statusProduct                 controllers.Application.statusProduct()
+GET         /payment/:id                   controllers.Application.payment(id : String)
+POST        /insertpayment                 controllers.Application.insertpayment()
+#file
+
+#Approve
+GET         /listPayment                    controllers.Application.listPayment()
+GET         /assets/*file                  controllers.Assets.at(path="/public", file)

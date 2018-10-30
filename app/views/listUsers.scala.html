@@ -1,0 +1,25 @@
+@(listUser :List[Users])
+<center>
+    <h3>รายชื่อสมาชิกทั้งหมด</h3>
+    <table class="table table-hover ">
+        <tr class="active">
+            <td>Username</td>
+            <td>Password</td>
+            <td>Name</td>
+            <td>Surname</td>
+            <td>Tel</td>
+            <td>Status</td>
+        </tr>
+        @for(pro <- listUser) {
+            <tr>
+                <td>@pro.getUsername</td>
+                <td>@pro.getPassword</td>
+                <td>@pro.getName</td>
+                <td>@pro.getSername</td>
+                <td>@pro.getTel</td>
+                <td>@pro.getStatus</td>
+            </tr>
+        }
+    </table>
+
+</center>

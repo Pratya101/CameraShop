@@ -1,0 +1,24 @@
+@(addtype: Form[Accessory],typeacc: List[TypeAcc])
+@import helper._;
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+        @if(flash.containsKey("msgError")) {
+            <div class="alert alert-danger"><strong>ผิดพลาด</strong>@flash.get("msgError"). </div>
+        }
+        @helper.form(action = routes.Application.insertAccessory(), 'enctype -> "multipa        rt/form-data") {
+            @inputText(addtype("id"), '_label -> "รหัสอุปกรณ์", 'size -> "10px", 'required -> "required", 'class -> "form-control")
+            @inputText(addtype("name"), '_label -> "ชื่ออุปกรณ์", 'size -> "40px", 'required -> "required", 'class -> "form-control")
+            @select(addtype("typeAcc.id"),
+                options = typeacc.map(typess => typess.getId -> typess.getName),
+                '_label -> "ประเภทอุปกรณ์", 'class -> "form-control")
+            @inputText(addtype("price"), '_label -> "ราคา", 'size -> "10px", 'required -> "required", 'class -> "form-control")
+            @inputText(addtype("amount"), '_label -> "จำนวน", 'size -> "จำนวน", 'required -> "required", 'class -> "form-control")
+            @textarea(addtype("detail"), '_label -> "รายละเอียด", 'cols -> "60", 'rows -> "5", 'required -> "required", 'class -> "form-control")
+            @inputFile(addtype("pic"), '_label -> "รูปอุปกรณ์", 'required -> "required")
+            <input type="submit" value="เพิ่มอุปกรณ์" class="btn btn-success">
+            <input type="reset" value="เคลียร์" class="btn btn-danger">
+            }
+    </div>
+    <div class="col-md-3"></div>
+</div>

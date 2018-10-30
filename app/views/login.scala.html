@@ -1,0 +1,29 @@
+<center>
+        @if(flash.containsKey("err")) {
+            <div class="alert alert-danger"><strong>ผิดพลาด</strong>@flash.get("err"). </div>
+        }
+    @if(flash.containsKey("NotUser")) {
+        <div class="alert alert-danger"><strong>เเนะนำ </strong> @flash.get("NotUser") </div>
+    }
+            <div class="row">
+                <div class="col-md-2"></div>
+                <div class="col-md-7"><h2>Login</h2>
+                    <form action="/submitLogin" method="post">
+                        <div class="form-group">
+                            <label for="usr">Email address:</label>
+                            <input type="text" name="usr" class="form-control" id="usr">
+                        </div>
+                        <div class="form-group">
+                            <label for="pwd">Password:</label>
+                            <input type="password" name="pwd" class="form-control" id="pwd">
+                        </div>
+                        <p><a href="#"><u>ลืมรหัสผ่าน </u></a></p>
+                        <a href="/register"><u>สมัครสมาชิก</u></a>
+                        <br>
+                        <br>
+                        <input type="submit" value="Login" class="btn btn-dark btn-block">
+                    </form></div>
+                <div class="col-md-3"></div>
+            </div>
+
+</center>

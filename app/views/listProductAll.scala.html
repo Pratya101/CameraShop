@@ -1,0 +1,34 @@
+@(productlist : List[Products])
+<center>
+<h3>รายการสินค้าทั้งหมด</h3>
+<table class="table table-hover ">
+    <tr class="active">
+        <td>ID</td>
+        <td>Name</td>
+        <td>Type</td>
+        <td>Brand</td>
+        <td>Price</td>
+        <td>Amount</td>
+        <td>Detail</td>
+        <td>Edit</td>
+        <td>Delete</td>
+    </tr>
+    @for(pro <- productlist) {
+        <tr>
+            <td>@pro.getId</td>
+            <td>@pro.getName</td>
+            <td>@pro.getTypes.getName</td>
+            <td>@pro.getBrands.getName</td>
+            <td>@pro.getPrice</td>
+            <td>@pro.getAmount</td>
+            <td align="center"><a href="/detailProductadmin/@pro.getId"><i class="material-icons">description</i></a></td>
+            <td align="center"><a href="/editProducts/@pro.getId"><i class="material-icons">edit</i></a></td>
+            <td align="center"><a href="/deleteProduct/@pro.getId" onclick="return confirm('คุณต้องการที่จะลบสินค้าตัวนี้ใช่ไหรือไม่')"><i class="material-icons">delete</i></a></td>
+
+        </tr>
+    }
+</table>
+    <a href="/addProduct"> <button type="button" class="btn btn-primary">เพิ่มสินค้า</button></a>
+
+
+</center>

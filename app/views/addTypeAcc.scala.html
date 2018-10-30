@@ -1,0 +1,17 @@
+@(addTypeAcc : Form[TypeAcc])
+@import helper._;
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+        @if(flash.containsKey("msgError")) {
+            <div class="alert alert-danger"><strong>ผิดพลาด</strong>@flash.get("msgError"). </div>
+        }
+        @helper.form(action = routes.Application.insertTypeAcc(), 'enctype -> "multipart/form-data") {
+            @inputText(addTypeAcc("id"), '_label -> "รหัสประเภมอุปกรณ์", 'size -> "10px", 'required -> "required", 'class -> "form-control")
+            @inputText(addTypeAcc("name"), '_label -> "ชื่อประเภทอุปกรณ์", 'size -> "40px", 'required -> "required", 'class -> "form-control")
+            <input type="submit" value="เพิ่มประเภทอุปกรณ์เสริม" class="btn btn-success">
+            <input type="reset" value="เคลียร์" class="btn btn-danger">
+            }
+    </div>
+    <div class="col-md-3"></div>
+</div>

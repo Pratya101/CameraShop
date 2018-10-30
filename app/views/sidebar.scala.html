@@ -1,0 +1,26 @@
+@(brandslist : List[Brands],dataTypeAcc : List[TypeAcc])
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action" style="background-color: black; color: white" >
+    ยี่ห้อ
+    </a>
+    @for(brand <- brandslist) {
+        <a href="/Brand/@brand.getId" class="list-group-item list-group-item-action">@brand.getName</a>
+    }
+<br>
+        <img src="/assets/images/Promotions.jpg">
+</div>
+<br>
+<br>
+
+
+<!--
+<div class="list-group">
+    <a href="#" class="list-group-item list-group-item-action" style="background-color: black; color: white" >
+    อุปรกรณ์เสริม
+    </a>
+    @for(typeAcc <- dataTypeAcc) {
+        <a href="/typeaccessrory/@typeAcc.getId" class="list-group-item list-group-item-action">@typeAcc.getName</a>
+    }
+    <br>
+</div>
+-->

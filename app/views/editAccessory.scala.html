@@ -1,0 +1,25 @@
+@(formacc: Form[Accessory],typeacc : List[TypeAcc])
+@import helper._;
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-7">
+        @if(flash.containsKey("msgError")) {
+            <div class="alert alert-danger"><strong>ผิดพลาด</strong>@flash.get("msgError"). </div>
+        }
+        @helper.form(action = routes.Application.updateAccessory(), 'enctype -> "multipart/form-data") {
+            @inputText(formacc("id"), '_label -> "รหัสอุปกรณ์", 'size -> "10px", 'required -> "required", 'class -> "form-control",'readonly->"readonly")
+            @inputText(formacc("name"), '_label -> "ชื่ออุปกรณ์", 'size -> "40px", 'required -> "required", 'class -> "form-control")
+            @select(formacc("typeAcc.id"),
+                options = typeacc.map(typess => typess.getId -> typess.getName),
+                '_label -> "ประเภทอุปกรณ์", 'class -> "form-control")
+            @inputText(formacc("price"), '_label -> "ราคา", 'size -> "10px", 'required -> "required", 'class -> "form-control")
+            @inputText(formacc("amount"), '_label -> "จำนวน", 'size -> "จำนวน", 'required -> "required", 'class -> "form-control")
+            @textarea(formacc("detail"), '_label -> "รายละเอียด", 'cols -> "60", 'rows -> "5", 'required -> "required", 'class -> "form-control")
+            <img src="/assets/images/csacc/@formacc.get.getPic" width="100px" height="100px">
+            @inputFile(formacc("pic"), '_label -> "รูปอุปกรณ์")
+            <input type="submit" value="บันทึก" class="btn btn-success">
+            <input type="reset" value="เคลียร์" class="btn btn-danger">
+            }
+    </div>
+    <div class="col-md-3"></div>
+</div>
