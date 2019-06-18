@@ -775,9 +775,10 @@ public class Application extends Controller {
 
     //Basket-------------------------------------------------------------
 
-    public static List<OrdersDetail> basketList = new ArrayList<OrdersDetail>();
+    public  List<OrdersDetail> basketList = new ArrayList<OrdersDetail>();
 
     public static Result basketSell() {
+        String   myBasket = "basketList" + session("usr");
         if (session().get("status") == null) {
             flash("NotUser", "กรุณาเข้าสู้ระบบก่อนเพื่อดูสินค้าในตระกร้า");
             return loginForm();
@@ -785,16 +786,34 @@ public class Application extends Controller {
             flash("NotAddminError", "คุณไม่มีสิทธิ์เข้าใช้งานในส่วนนี้ครับ !");
             return showmain(NoAdmin.render());
         } else {
-            List<Basket> basketList = (List<Basket>) Cache.get("basketList");
+            List<Basket> basketList = (List<Basket>) Cache.get(myBasket);
             return showmain(views.html.basketList.render(basketList));
         }
     }
 
+
+    public static Result removeItem(String id) {
+        String   myBasket = "basketList" + session("usr");
+        List<Basket> basketList = new ArrayList<Basket>();
+        if (Cache.get(myBasket) != null) {
+            basketList.addAll((List<Basket>) Cache.get(myBasket));
+            for (int i = 0; i < basketList.size(); i++) {
+                if (basketList.get(i).getProducts().getId().equals(id)) {
+                    basketList.remove(i);
+                    break;
+                }
+            }
+        }
+        Cache.set(myBasket, basketList);
+        return redirect("/basketSell");
+    }
+
     public static Result addOrder(String id) {
+        String   myBasket = "basketList" + session("usr");
         List<Basket> basketList = new ArrayList<Basket>();
         boolean found = false;
-        if (Cache.get("basketList") != null) {
-            basketList.addAll((List<Basket>) Cache.get("basketList"));
+        if (Cache.get(myBasket) != null) {
+            basketList.addAll((List<Basket>) Cache.get(myBasket));
             for (int i = 0; i < basketList.size(); i++) {
                 if (basketList.get(i).getProducts().getId().equals(id)) {
                     int amount = basketList.get(i).getAmount();
@@ -808,44 +827,32 @@ public class Application extends Controller {
             products = Products.finder.byId(id);
             basketList.add(new Basket(products, 1));
         }
-        Cache.set("basketList", basketList);
+        Cache.set(myBasket, basketList);
         return redirect("/basketSell");
-    }
-
-    public static Result removeItem(String id) {
-        List<Basket> basketList = new ArrayList<Basket>();
-        if (Cache.get("basketList") != null) {
-            basketList.addAll((List<Basket>) Cache.get("basketList"));
-            for (int i = 0; i < basketList.size(); i++) {
-                if (basketList.get(i).getProducts().getId().equals(id)) {
-                    basketList.remove(i);
-                    break;
-                }
-            }
-        }
-        Cache.set("basketList", basketList);
-        return redirect("/basketSell");
+        //return ok(showInfo.render(basketList));
     }
 
     public static Result checkBill() {
+        String   myBasket = "basketList" + session("usr");
         users = Users.finder.byId(session("usr"));
         List<Basket> basketList = new ArrayList<Basket>();
-        if (Cache.get("basketList") != null) {
-            basketList = (List<Basket>) Cache.get("basketList");
+        if (Cache.get(myBasket) != null) {
+            basketList = (List<Basket>) Cache.get(myBasket);
         }
         return showmain(checkBill.render(basketList, users));
     }
 
     public static Result saveBill() {
+        String   myBasket = "basketList" + session("usr");
         List<Basket> basketList = new ArrayList<Basket>();
-        if (Cache.get("basketList") != null) {
+        if (Cache.get(myBasket) != null) {
             Orders orders = new Orders();
             Users users = Users.finder.byId(session().get("usr"));
             orders.setDate(new Date());
             orders.setUsers(users);
             orders.setStatus("");
             Orders.insert(orders);
-            basketList = (List<Basket>) Cache.get("basketList");
+            basketList = (List<Basket>) Cache.get(myBasket);
             for (int i = 0; i < basketList.size(); i++) {
                 OrdersDetail ordersDetail = new OrdersDetail();
                 ordersDetail.setOrders(orders);
@@ -855,7 +862,7 @@ public class Application extends Controller {
             }
         }
         flash("saveBill", "ทำการสั่งสินค้าเรียบร้อยเเล้วครับ");
-        Cache.remove("basketList");
+        Cache.remove(myBasket);
         List<Orders> NoPay = Orders.NoPayList(session("usr"));
         return showmain(listPay.render(NoPay));
     }

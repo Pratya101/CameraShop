@@ -1,4 +1,5 @@
 @(payList : List[Orders])
+@import java.lang.Double; var sum=0.00;
 <center>
 <h2>
     รายการสั่งซื้อที่มีการเเจ้งชำระเงินเล้ว
@@ -7,8 +8,8 @@
 <table class="table table-hover">
     <th>เลขที่ใบเสร็จ</th>
     <th>รายการ</th>
-    <th>Pic</th>
-    <th>รายชื่อชื่อผู้สั่งสินค้า</th>
+    <th>หลักฐานการชำระเงิน</th>
+    <th>อนุมัติการสั่งซื้อ</th>
 
     @for(pay <- payList){
         <tr>
@@ -19,16 +20,22 @@
                     <tr>
                         <td>@listproduct.getProducts.getName </td>
                         <td>@listproduct.getProducts.getGeneration</td>
+                        @(sum = sum + (listproduct.getProducts.getPrice * listproduct.getAmount))
                         <td>ราคา : @(listproduct.getAmount * listproduct.getProducts.getPrice) บาท</td>
                     </tr>
                 }
+                <tr>
+                    <td colspan="2" style="color: red;">ราคารวม</td>
+                    <td style="color: red">@sum</td>
+                </tr>
                 </table>
             </td>
             <td>
                 <a href="/assets/images/bill/@pay.getStatus" target="_blank">    <img src="/assets/images/bill/@pay.getStatus" width="100px" height="100px" class="img-thumbnail"></a>
             </td>
 
-            <td>@pay.getUsers.getName @pay.getUsers.getSername</td>
+            <td align="center"><a href="#" class="btn btn-outline-info">อนุมัติการสั่งซื้อ</a><br><br>
+                <a href="#" class="btn btn-outline-danger">หลักฐานไม่ถูกต้อง</a></td>
         </tr>
 
     }

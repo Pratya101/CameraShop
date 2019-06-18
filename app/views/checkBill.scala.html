@@ -1,4 +1,7 @@
+
 @(basketList: List[Basket],users: Users)
+@import java.lang.Double; var sum=0.00;
+
 <br>
 <div class="row">
     <div class="col-md-12">
@@ -13,18 +16,25 @@
         <th width="10%">ราคา</th>
         <th width="10%">จำนวน</th>
         <th width="20%">เป็นเงิน</th>
-
     @for(basket <- basketList){
         <tr>
             <td>@basket.getProducts.getId</td>
             <td>@basket.getProducts.getBrands.getName</td>
             <td>@basket.getProducts.getPrice</td>
             <td>@basket.getAmount</td>
+            @(sum = sum + (basket.getProducts.getPrice * basket.getAmount))
             <td>@(basket.getProducts.getPrice * basket.getAmount)</td>
-
         </tr>
+
     }
+            <tr>
+                <td colspan="4" style="color: red;">รวม</td>
+                <td style="color: red;"><u><u>@sum</u></u></td>
+            </tr>
         </table>
+
+
+
         <br>
         <a href="/saveBill" class="btn btn-success"><i class="material-icons" style="font-size: 15px;">check_circle</i> ยืนยันการสั่งซื้อ</a>
         <a href="/" class="btn btn-primary"><i class="material-icons" style="font-size: 15px;">add_circle</i> เลือกสินค้าเพิ่ม</a>

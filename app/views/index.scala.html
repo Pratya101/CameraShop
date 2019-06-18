@@ -2,9 +2,9 @@
 @if(session.get("status")=="user"){
     <div class="row">
     @for(pros <- prooo){
-        <div class="col-md-3" style="padding: 1px;">
+        <div class="col col-md-3 col-sm-6 col-xs-6 col-6 " style="padding: 1px;">
             <div class="card" style="width: 13rem;">
-                <img class="card-img-top" src="/assets/images/cscam/@pros.getPic" alt="Card image cap">
+                <img class  ="card-img-top" src="/assets/images/cscam/@pros.getPic" alt="Card image cap">
                 <div class="card-body">
                     <b><h7 class="card-title">ยี่ห้อ : @pros.getBrands.getName</h7></b>
                     <p class="card-text">รุ่น : @pros.getGeneration <br>ประเภท : @pros.getTypes.getName <br>ราคา : @pros.getPrice</p>
@@ -18,7 +18,7 @@
 }else{
     <div class="row">
     @for(pros <- prooo){
-        <div class="col-md-3" style="padding: 1px;">
+        <div class="col col-md-3 col-sm-6 col-xs-6 col-6 " style="padding: 1px;">
             <div class="card" style="width: 13rem;">
                 <img class="card-img-top" src="/assets/images/cscam/@pros.getPic" alt="Card image cap">
                 <div class="card-body">

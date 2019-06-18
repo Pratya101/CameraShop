@@ -1,4 +1,5 @@
 @(sale : Orders,addbill : Form[Orders])
+@import java.lang.Double; var sum=0.00;
 @if(flash.containsKey("billok")){
     <center><div class="alert alert-success"><strong>สำเร็จ</strong>@flash.get("billok"). </div></center>
 }
@@ -22,9 +23,15 @@
                 <td>@listproduct.getProducts.getName </td>
                 <td>@listproduct.getProducts.getGeneration</td>
                 <td>จำนวน : @listproduct.getAmount ตัว</td>
+                @(sum = sum + (listproduct.getAmount * listproduct.getProducts.getPrice) )
                 <td>ราคา : @(listproduct.getAmount * listproduct.getProducts.getPrice) บาท</td>
             </tr>
+
         }
+        <tr>
+            <td colspan="3" style="color: red">ราคารวม</td>
+            <td style="color: red">@sum</td>
+        </tr>
         </table>
         <br>
 
